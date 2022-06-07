@@ -1,19 +1,10 @@
 <template>
   <div class="nav">
     <p class="hover-underline-animation">
-      <router-link class="nav-link" to="/">Home</router-link>
+      <router-link class="nav-link" to="/">Home</router-link> |
     </p>
-    |
     <p class="hover-underline-animation">
-      <router-link class="nav-link" to="/counter">Counter</router-link>
-    </p>
-    |
-    <p class="hover-underline-animation">
-      <router-link class="nav-link" to="/users">Users</router-link>
-    </p>
-    |
-    <p class="hover-underline-animation">
-      <router-link class="nav-link" to="/about">About</router-link>
+      <router-link class="nav-link" to="/search"> Search </router-link>
     </p>
   </div>
   <router-view />
@@ -53,7 +44,8 @@
 .hover-underline-animation {
   display: inline-block;
   position: relative;
-  color: #0087ca;
+  color: white;
+  margin-right: 5px;
 }
 
 .hover-underline-animation:after {
