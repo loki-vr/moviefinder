@@ -10,7 +10,7 @@
           <div class="img__description_layer">
             <p class="img__description">
               <font size="+3">
-                <b><router-link class = "poster" to="/poster">{{ movie.title }}</router-link> </b>
+                <b><router-link class = "poster" :to="{path: '/' + movie.id}">{{ movie.title }}</router-link> </b>
               </font>
               <br />
               <p class="img__description line_limit">
