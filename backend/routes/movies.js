@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const MovieModel = require("../models/movie");
-require("../models/user");
 
 const movie_params = [
   "_id",
@@ -22,7 +21,8 @@ router.get("/", async function (req, res) {
 router.post("/new", async function (req, res) {
   try {
     let movieParams = {};
-    for (const param in movie_params) {
+    for (const param of movie_params) {
+      console.error(param);
       if (req.body[param]) {
         movieParams[param] = req.body[param];
       } else {
@@ -36,11 +36,11 @@ router.post("/new", async function (req, res) {
     res.status(201).json(movie);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error });
   }
 });
 
-router.get("/:id", async function (req, res) {
+router.get("/:_id", async function (req, res) {
   const movie = await MovieModel.findOne({ _id: req.params._id }).populate(
     "genres"
   );
