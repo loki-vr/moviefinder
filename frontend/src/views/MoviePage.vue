@@ -22,11 +22,17 @@
             {{ vote(movie.vote_average) }}
           </h2>
 
-          <button class="oui-bouton" type="button">I like it 👍</button>
-          <button class="non-bouton" type="button">I don't like it 👎</button>
+          <button v-if="opinion === 1" class="oui-bouton" type="button">I like it 👍</button>
+          <button v-if="opinion === 1"  class="non-bouton" type="button">I don't like it 👎</button>
+          <button v-if="opinion === 1 || opinion === -1" class="remove-bouton" type="button">Change my opinion</button>
 
-          <div style="display: flex; overflow: auto">
-            <Film></Film>
+          <p style="text-align: left;"><span style="text-decoration: underline">Similar films and series</span> :</p>
+          <div style="display: flex; overflow:auto; width: 100%">
+          <Film :movie="film1"></Film>
+          <Film :movie="film2"></Film>
+          <Film :movie="film1"></Film>
+          <Film :movie="film2"></Film>
+          <Film :movie="film1"></Film>
           </div>
         </div>
       </div>
@@ -34,23 +40,42 @@
   </div>
 </template>
 
+
 <script>
 import axios from "axios";
-
+import Film from "@/components/Film.vue";
 export default {
   name: "MoviePage",
+  components: {
+    Film,
+  },
   data: function () {
-    return { movieName: "h", movie: {} };
+    return { movieName: "h", movie: {}, opinion: 0, 
+    film1: {
+      id: 338953, 
+      original_title: "Fantastic Beasts: The Secrets of Dumbledore",
+      poster_path: "/jrgifaYeUtTnaH7NF5Drkgjg2MB.jpg", },
+    film2: {
+      id: 752623, 
+      original_title: "The Lost City",
+      poster_path: "/neMZH82Stu91d3iqvLdNQfqPPyl.jpg", },
+      
+      }
   },
   methods: {
+    g: function(list,id) {
+        let found = list.find(element => element.id == id);
+        if (!found){
+          found = {original_title: "ERROR 404", release_date: "never released", vote_average: "0", overview: "Tu es tombé sur un film bien mystérieux qui n'existe pas... Si tu cherches un film qui n'est pas encore dans notre bdd, n'hésite pas à utiliser l'option \"ajouter\" un film et il apparaîtra sur notre site."}
+        }
+        return found
+    },
     concatener: function (movie) {
-      if (movie.backdrop) {
-        return (
-          "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces" +
-          movie.backdrop
-        );
-      } else {
-        return "https://www.zupimages.net/up/22/23/9sfi.png";
+      if (movie.backdrop_path) {
+      return "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces" + movie.backdrop_path;
+      }
+      else {
+        return "https://www.zupimages.net/up/22/23/9sfi.png"
       }
     },
     vote: function (vote) {
@@ -84,7 +109,7 @@ export default {
 .texte {
   background: rgba(16, 15, 15, 0.8);
   overflow: auto;
-  width: 30%;
+  width: 45%;
   text-align: center;
   height: 100%;
   color: white;
@@ -105,15 +130,26 @@ h1 {
 .oui-bouton {
   background: rgb(66, 114, 30);
   color: white;
-  border: rgb(66, 114, 30);
+  border :  rgb(66, 114, 30);
   border-radius: 20px;
   padding: 5px;
 }
 
+.home {height: 100%}
+
 .non-bouton {
   background: rgb(125, 51, 51);
   color: white;
-  border: rgb(125, 51, 51);
+  border :  rgb(125, 51, 51);
+  border-radius: 20px;
+  padding: 5px;
+  margin-left: 5px;
+}
+
+.remove-bouton {
+  background: rgb(171, 168, 168);
+  color: white;
+  border :  rgb(171, 168, 168);
   border-radius: 20px;
   padding: 5px;
   margin-left: 5px;
