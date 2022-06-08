@@ -14,9 +14,12 @@
           <h4>{{g(movies, this.$route.params.id).release_date}}</h4>
           <h2>{{g(movies, this.$route.params.id).vote_average / 2}}/5 {{vote(g(movies, this.$route.params.id).vote_average)}}</h2>
          
-          <button class="oui-bouton" type="button">I like it 👍</button>
-          <br /><br />
+          <button class="oui-bouton" type="button">I like it 👍</button> 
           <button class="non-bouton" type="button">I don't like it 👎</button>
+
+          <div style="display: flex;overflow:auto,">
+          <Film></Film>
+          </div>
 
       </div>
       </div>
@@ -117,5 +120,6 @@ h1 {
   border :  rgb(125, 51, 51);
   border-radius: 20px;
   padding: 5px;
+  margin-left: 5px;
 }
 </style>
