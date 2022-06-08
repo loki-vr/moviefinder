@@ -1,32 +1,36 @@
 <template>
   <div class="nav">
-    <div  style="margin: auto;">
-    <router-link class="nav-link" to="/">
-    <img
-      alt="MorbiusTV logo"
-      src="./assets/morbiustv.png"
-      height="30"
-      align="left"
-    />
-    </router-link>
+    <div style="margin: auto">
+      <router-link class="nav-link" to="/">
+        <div class="morbiuslogo">
+          <img alt="MorbiusTV logo" src="./assets/morbiustv.png" height="30" />
+        </div>
+      </router-link>
     </div>
-    <div style="text-align: center; width: 100%; margin: auto;">
-    <p class="hover-underline-animation">
-      <router-link class="nav-link" to="/">Home</router-link>
-    </p>
-    |
-    <p class="hover-underline-animation">
-      <router-link class="nav-link" to="/add"> Add films </router-link>
-    </p>
+    <div style="text-align: center; width: 100%; margin: auto">
+      <p class="hover-underline-animation">
+        <router-link class="nav-link" to="/">Home</router-link>
+      </p>
+      |
+      <p class="hover-underline-animation">
+        <router-link class="nav-link" to="/add"> Add films </router-link>
+      </p>
     </div>
+    <div class="search"><Searchbar /></div>
   </div>
   <router-view />
 </template>
-
+<script>
+import Searchbar from "@/components/Searchbar.vue";
+export default {
+  name: "App",
+  components: { Searchbar },
+};
+</script>
 <style scoped>
 .nav {
   text-align: center;
-  z-index:1;
+  z-index: 1;
   color: white;
   top: 0;
   left: 0;
@@ -82,5 +86,19 @@
 .hover-underline-animation:hover:after {
   transform: scaleX(1);
   transform-origin: bottom left;
+}
+
+.search {
+  margin: 10px;
+  margin-right: 20px;
+}
+
+.morbiuslogo {
+  margin: 10px;
+}
+
+.morbiuslogo:hover {
+  opacity: 0.7;
+  transition: 0.2s;
 }
 </style>

@@ -1,26 +1,27 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/morbiustv.png" />
-    <h1>MorbiusTV+</h1>
-    <p>
-      Les meilleures recommandations de films tels que Morbius sont sur
-      MorbiusTV+!
-    </p>
-    <Searchbar />
-    <ul>
-      <li v-for="movie in movies" :key="movie.id"><Movies :movie="movie" /></li>
-    </ul>
-   
+    <body>
+      <img alt="Vue logo" src="../assets/morbiustv.png" />
+      <h1>MorbiusTV+</h1>
+      <p>
+        Les meilleures recommandations de films tels que Morbius sont sur
+        MorbiusTV+!
+      </p>
+      <ul>
+        <li v-for="movie in movies" :key="movie.id">
+          <Movies :movie="movie" />
+        </li>
+      </ul>
+    </body>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import Movies from "@/components/Movies.vue";
-import Searchbar from "@/components/Searchbar.vue";
 export default {
   name: "Home",
-  components: { Movies, Searchbar },
+  components: { Movies },
   data: function () {
     return {
       movies: [],
@@ -45,10 +46,24 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style scoped>
+body {
+  animation: fadeInAnimation ease 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .home {
   text-align: center;
   color: white;
-  padding-top: 70px;
+  padding-top: 100px;
   font-size: x-large;
   margin-left: 0;
   margin-right: 0;

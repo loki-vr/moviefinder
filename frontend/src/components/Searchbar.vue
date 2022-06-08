@@ -21,11 +21,12 @@ export default {
 input {
   color: white;
   height: 50px;
+  width: 300px;
   padding-left: 45px;
   font-size: medium;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", sans-serif;
-  background-color: #1c181b;
+  background-color: #3e313c;
   border-bottom: 1.5px solid #ffbc5e;
   margin: 2%;
   border-radius: 10px;
@@ -36,10 +37,9 @@ input {
 }
 
 input:hover {
-  font-size: larger;
   border-bottom: 1.5px solid #f15ad3;
-  transition: 0.2s;
   background-image: url("../assets/magnifier2.png");
+  transition: 0.2s;
 }
 
 input:hover:after {

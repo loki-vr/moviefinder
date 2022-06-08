@@ -2,7 +2,7 @@
 <template>
 
   <div class="movies">
-    <router-link class = "poster" :to="{path: '/' + movie.id}">
+          <router-link class = "poster" :to="{path: '/' + movie.id}">  
         <div class="img__wrap">
           <img
             class="img_img"
@@ -11,9 +11,9 @@
           <div class="img__description_layer">
             <p class="img__description">
               <p class="title">
-              <font size="+3">
+              <h1>
                 <b>{{ movie.title }} </b>
-              </font>
+              </h1>
               </p>
               <p class="img__description line_limit">
                         {{ movie.overview }}</p>
@@ -22,6 +22,7 @@
           </div>
         </div>
         </router-link>
+        
   </div>
 </template>
 
@@ -144,5 +145,9 @@ html {
   text-align:center;
   font-size:medium;
   margin-top:10px;
+}
+
+a {
+  text-decoration: none;
 }
 </style>
