@@ -1,18 +1,24 @@
 <template>
   <div class="home">
     <div
-      class="test"
+      class="fond-image"
       :style="`
-        background-image: url(${concatener(g(movies, this.$route.params.id).backdrop_path)});
+        background-image: url(${concatener(g(movies, this.$route.params.id))});
       `"
     >
       <div class="inside"> 
         <div class="texte">
+          <br /><br /><br /><br />
           <h1>{{ g(movies, this.$route.params.id).original_title }}</h1>
-          <p>{{g(movies, this.$route.params.id).overview}}</p>
+          <p style="text-align: justify">{{g(movies, this.$route.params.id).overview}}</p>
           <h4>{{g(movies, this.$route.params.id).release_date}}</h4>
           <h2>{{g(movies, this.$route.params.id).vote_average / 2}}/5 {{vote(g(movies, this.$route.params.id).vote_average)}}</h2>
-        </div>
+         
+          <button class="oui-bouton" type="button">I like it 👍</button>
+          <br /><br />
+          <button class="non-bouton" type="button">I don't like it 👎</button>
+
+      </div>
       </div>
     </div>
   </div>
@@ -29,12 +35,19 @@ export default {
   },
   methods: {
     g: function(list,id) {
-        const found = list.find(element => element.id == id);
-        console.log(found)
+        let found = list.find(element => element.id == id);
+        if (!found){
+          found = {original_title: "ERROR 404", release_date: "never released", vote_average: "0", overview: "Tu es tombé sur un film bien mystérieux qui n'existe pas... Si tu cherches un film qui n'est pas encore dans notre bdd, n'hésite pas à utiliser l'option \"ajouter\" un film et il apparaîtra sur notre site."}
+        }
         return found
     },
     concatener: function (url) {
-      return "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces" + url;
+      if (url.backdrop_path) {
+      return "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces" + url.backdrop_path;
+      }
+      else {
+        return "https://www.zupimages.net/up/22/23/9sfi.png"
+      }
     },
     vote: function (vote) {
       let answer = "";
@@ -65,30 +78,44 @@ export default {
 
 .inside {
   color: white;
+  height: 100%;
 
 }
-.home {
+.texte {
+  background: rgba(16, 15, 15, 0.8);
+  overflow: auto;
+  width: 30%;
   text-align: center;
   height: 100%;
-}
-
-.texte {
-  padding-top: 500px;
-  padding: 50px;
-  background: rgba(16, 15, 15, 0.8);
-  width: 40%;
-  height: 100%;
   color: white;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 
-.test {
+.fond-image {
   background-size: cover;
   height: 100%;
+  width: 100%;
 }
 
 h1 {
   font-family: Verdana;
 }
 
+.oui-bouton {
+  background: rgb(66, 114, 30);
+  color: white;
+  border :  rgb(66, 114, 30);
+  border-radius: 20px;
+  padding: 5px;
+}
+
+.non-bouton {
+  background: rgb(125, 51, 51);
+  color: white;
+  border :  rgb(125, 51, 51);
+  border-radius: 20px;
+  padding: 5px;
+}
 </style>
