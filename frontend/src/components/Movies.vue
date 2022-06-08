@@ -14,7 +14,7 @@
               </font>
               <br />
               <p class="img__description line_limit">
-                        <router-link class = "img__description" to="/poster">{{ movie.overview }}</router-link> </p>
+                        <router-link class = "img__description" :to="{path: '/' + movie.id}">{{ movie.overview }}</router-link> </p>
               <p class = "vote"> <b>Note :</b> {{ movie.vote_average }}/10</p>
             </p>
           </div>
@@ -88,6 +88,7 @@ html {
   bottom: 0;
   left: 0;
   right: 0;
+  padding: 5px;
   background: black;
   color: #fff;
   visibility: hidden;
