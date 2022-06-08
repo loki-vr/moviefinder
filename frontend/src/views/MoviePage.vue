@@ -9,16 +9,22 @@
       <div class="inside"> 
         <div class="texte">
           <br /><br /><br /><br />
-          <h1>{{ g(movies, this.$route.params.id).original_title }}</h1>
+          <h3>{{ g(movies, this.$route.params.id).original_title }} ({{g(movies, this.$route.params.id).release_date}})</h3>
           <p style="text-align: justify">{{g(movies, this.$route.params.id).overview}}</p>
-          <h4>{{g(movies, this.$route.params.id).release_date}}</h4>
-          <h2>{{g(movies, this.$route.params.id).vote_average / 2}}/5 {{vote(g(movies, this.$route.params.id).vote_average)}}</h2>
+          {{vote(g(movies, this.$route.params.id).vote_average)}} ({{g(movies, this.$route.params.id).vote_average / 2}}/5)
          
-          <button class="oui-bouton" type="button">I like it 👍</button> 
-          <button class="non-bouton" type="button">I don't like it 👎</button>
+         
+          <button v-if="opinion === 1" class="oui-bouton" type="button">I like it 👍</button>
+          <button v-if="opinion === 1"  class="non-bouton" type="button">I don't like it 👎</button>
+          <button v-if="opinion === 1 || opinion === -1" class="remove-bouton" type="button">Change my opinion</button>
 
-          <div style="display: flex;overflow:auto,">
-          <Film></Film>
+          <p style="text-align: left;"><span style="text-decoration: underline">Similar films and series</span> :</p>
+          <div style="display: flex; overflow:auto; width: 100%">
+          <Film :movie="film1"></Film>
+          <Film :movie="film2"></Film>
+          <Film :movie="film1"></Film>
+          <Film :movie="film2"></Film>
+          <Film :movie="film1"></Film>
           </div>
 
       </div>
@@ -30,11 +36,24 @@
 
 <script>
 import axios from "axios";
-
+import Film from "@/components/Film.vue";
 export default {
   name: "MoviePage",
+  components: {
+    Film,
+  },
   data: function () {
-    return { movieName: "h", movies: [{ id: "5" }] };
+    return { movieName: "h", movies: [{}], opinion: 0, 
+    film1: {
+      id: 338953, 
+      original_title: "Fantastic Beasts: The Secrets of Dumbledore",
+      poster_path: "/jrgifaYeUtTnaH7NF5Drkgjg2MB.jpg", },
+    film2: {
+      id: 752623, 
+      original_title: "The Lost City",
+      poster_path: "/neMZH82Stu91d3iqvLdNQfqPPyl.jpg", },
+      
+      }
   },
   methods: {
     g: function(list,id) {
@@ -87,7 +106,7 @@ export default {
 .texte {
   background: rgba(16, 15, 15, 0.8);
   overflow: auto;
-  width: 30%;
+  width: 45%;
   text-align: center;
   height: 100%;
   color: white;
@@ -114,10 +133,21 @@ h1 {
   padding: 5px;
 }
 
+.home {height: 100%}
+
 .non-bouton {
   background: rgb(125, 51, 51);
   color: white;
   border :  rgb(125, 51, 51);
+  border-radius: 20px;
+  padding: 5px;
+  margin-left: 5px;
+}
+
+.remove-bouton {
+  background: rgb(171, 168, 168);
+  color: white;
+  border :  rgb(171, 168, 168);
   border-radius: 20px;
   padding: 5px;
   margin-left: 5px;
