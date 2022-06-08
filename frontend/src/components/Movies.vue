@@ -1,46 +1,41 @@
-
 <template>
-
   <div class="movies">
-    <router-link class = "poster" :to="{path: '/' + movie.id}">
-        <div class="img__wrap">
-          <img
-            class="img_img"
-            :src="`https://image.tmdb.org/t/p/w300${movie.poster_path}`"
-          />
-          <div class="img__description_layer">
-            <p class="img__description">
-              <p class="title">
-              <font size="+3">
-                <b>{{ movie.title }} </b>
-              </font>
-              </p>
-              <p class="img__description line_limit">
-                        {{ movie.overview }}</p>
-              <p class = "vote"> <b>Note :</b> {{ movie.vote_average }}/10</p>
+    <router-link class="poster" :to="{ path: '/' + movie._id }">
+      <div class="img__wrap">
+        <img
+          class="img_img"
+          :src="`https://image.tmdb.org/t/p/w300${movie.poster}`"
+        />
+        <div class="img__description_layer">
+          <div class="img__description">
+            <h1 class="title">
+              <b>{{ movie.title }} </b>
+            </h1>
+            <p class="img__description line_limit">
+              {{ movie.overview }}
             </p>
+            <p class="vote"><b>Note :</b> {{ movie.vote_average }}/10</p>
           </div>
         </div>
-        </router-link>
+      </div>
+    </router-link>
   </div>
 </template>
 
 <script>
-
 export default {
   name: "Movies",
-  props: {movie:Object,},
-  }
+  props: { movie: Object },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 .movies {
   text-align: center;
-  color : white;
+  color: white;
   margin: 5px;
-  margin-bottom:20px;
+  margin-bottom: 20px;
 }
 
 h3 {
@@ -77,7 +72,7 @@ html {
   font-family: helvetica, arial, sans-serif;
 }
 
-/* Présentation des films */ 
+/* Présentation des films */
 .img__wrap {
   position: relative;
   height: 450px;
@@ -118,31 +113,30 @@ html {
   transition: 0.2s;
   transform: translateY(1em);
   text-decoration: none;
-  color:white;
+  color: white;
 }
 
 .img__wrap:hover .img__description {
   transform: translateY(0);
-  color:white;
-
+  color: white;
 }
 
 /* lien vers fiche des films */
-.poster{
-  font-size:larger;
+.poster {
+  font-size: larger;
   color: white;
   text-decoration: none;
 }
 
-.poster:hover{
-  color:#ffbc5e;
+.poster:hover {
+  color: #ffbc5e;
   opacity: 1;
 }
 
 /* notation */
 .vote {
-  text-align:center;
-  font-size:medium;
-  margin-top:10px;
+  text-align: center;
+  font-size: medium;
+  margin-top: 10px;
 }
 </style>

@@ -8,9 +8,10 @@
     </p>
     <Searchbar />
     <ul>
-      <li v-for="movie in movies" :key="movie.id"><Movies :movie="movie" /></li>
+      <li v-for="movie in movies" :key="movie._id">
+        <Movies :movie="movie" />
+      </li>
     </ul>
-   
   </div>
 </template>
 
@@ -28,12 +29,10 @@ export default {
   },
   created() {
     axios
-      .get(
-        "https://api.themoviedb.org/3/discover/movie?api_key=522d421671cf75c2cba341597d86403a"
-      )
+      .get(process.env.VUE_APP_API + "/movies")
       .then((response) => {
         console.log(response);
-        this.movies = response.data.results;
+        this.movies = response.data;
       })
       .catch((error) => {
         console.log(error);
