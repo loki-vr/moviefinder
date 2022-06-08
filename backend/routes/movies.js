@@ -62,6 +62,13 @@ router.get("/search/:search", async function (req, res) {
   res.json(movies);
 });
 
+router.get("/genre/:genre", async function (req, res) {
+  const movies = await MovieModel.find({
+    genres: parseInt(req.params.genre, 10),
+  });
+  res.json(movies);
+});
+
 router.get("/:id", async function (req, res) {
   const movie = await MovieModel.findOne({ _id: req.params.id }).populate(
     "genres"

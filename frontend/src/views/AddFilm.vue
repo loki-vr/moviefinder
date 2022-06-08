@@ -60,11 +60,9 @@ export default {
   },
   created() {
     axios
-      .get(
-        "https://api.themoviedb.org/3/genre/movie/list?api_key=522d421671cf75c2cba341597d86403a&language=en-US&page=2"
-      )
+      .get(process.env.VUE_APP_API + "/genres")
       .then((response) => {
-        this.genres = response.data.genres;
+        this.genres = response.data;
         console.log(this.genres);
       })
       .catch((error) => {

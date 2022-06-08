@@ -3,17 +3,25 @@
     <div
       class="fond-image"
       :style="`
-        background-image: url(${concatener(g(movies, this.$route.params.id))});
+        background-image: url(${concatener(movie)});
       `"
     >
-      <div class="inside"> 
+      <div class="inside">
         <div class="texte">
           <br /><br /><br /><br />
-          <h3>{{ g(movies, this.$route.params.id).original_title }} ({{g(movies, this.$route.params.id).release_date}})</h3>
-          <p style="text-align: justify">{{g(movies, this.$route.params.id).overview}}</p>
-          {{vote(g(movies, this.$route.params.id).vote_average)}} ({{g(movies, this.$route.params.id).vote_average / 2}}/5)
-         
-         
+          <h1>{{ movie.title }}</h1>
+          <p style="text-align: justify">
+            {{ movie.overview }}
+          </p>
+          <h4>
+            Release Date :
+            {{ new Date(movie.release_date).toLocaleDateString("en-US") }}
+          </h4>
+          <h2>
+            {{ movie.vote_average / 2 }}/5
+            {{ vote(movie.vote_average) }}
+          </h2>
+
           <button v-if="opinion === 1" class="oui-bouton" type="button">I like it 👍</button>
           <button v-if="opinion === 1"  class="non-bouton" type="button">I don't like it 👎</button>
           <button v-if="opinion === 1 || opinion === -1" class="remove-bouton" type="button">Change my opinion</button>
@@ -26,8 +34,7 @@
           <Film :movie="film2"></Film>
           <Film :movie="film1"></Film>
           </div>
-
-      </div>
+        </div>
       </div>
     </div>
   </div>
@@ -43,7 +50,7 @@ export default {
     Film,
   },
   data: function () {
-    return { movieName: "h", movies: [{}], opinion: 0, 
+    return { movieName: "h", movie: {}, opinion: 0, 
     film1: {
       id: 338953, 
       original_title: "Fantastic Beasts: The Secrets of Dumbledore",
@@ -63,9 +70,9 @@ export default {
         }
         return found
     },
-    concatener: function (url) {
-      if (url.backdrop_path) {
-      return "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces" + url.backdrop_path;
+    concatener: function (movie) {
+      if (movie.backdrop_path) {
+      return "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces" + movie.backdrop_path;
       }
       else {
         return "https://www.zupimages.net/up/22/23/9sfi.png"
@@ -81,15 +88,13 @@ export default {
   },
   created() {
     axios
-      .get(
-        `https://api.themoviedb.org/3/movie/popular?api_key=522d421671cf75c2cba341597d86403a`
-      )
+      .get(process.env.VUE_APP_API + "/movies/" + this.$route.params.id)
       .then((response) => {
         // Do something if call succeeded
-        this.movies = response.data.results;
+        this.movie = response.data;
       })
       .catch((error) => {
-        // Do something if call failed
+        console.log(error);
       });
   },
 };
@@ -97,11 +102,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 .inside {
   color: white;
   height: 100%;
-
 }
 .texte {
   background: rgba(16, 15, 15, 0.8);
@@ -113,7 +116,6 @@ export default {
   padding-left: 30px;
   padding-right: 30px;
 }
-
 
 .fond-image {
   background-size: cover;
