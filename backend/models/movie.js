@@ -9,6 +9,8 @@ const MovieSchema = new mongoose.Schema({
   overview: String,
   release_date: { type: Date, default: Date.now },
   popularity: Number,
+  vote_average: Number,
+  user_opinion: Number,
 });
 
 const MovieModel = mongoose.model("MovieModel", MovieSchema, "movies");
