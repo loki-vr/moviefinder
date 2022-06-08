@@ -48,7 +48,7 @@ export default {
 .home {
   text-align: center;
   color: white;
-  padding-top: 100px;
+  padding-top: 70px;
   font-size: x-large;
   margin-left: 0;
   margin-right: 0;

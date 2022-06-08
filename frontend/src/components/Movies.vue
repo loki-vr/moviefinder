@@ -2,6 +2,7 @@
 <template>
 
   <div class="movies">
+    <router-link class = "poster" :to="{path: '/' + movie.id}">
         <div class="img__wrap">
           <img
             class="img_img"
@@ -9,16 +10,18 @@
           />
           <div class="img__description_layer">
             <p class="img__description">
+              <p class="title">
               <font size="+3">
-                <b><router-link class = "poster" :to="{path: '/' + movie.id}">{{ movie.title }}</router-link> </b>
+                <b>{{ movie.title }} </b>
               </font>
-              <br />
+              </p>
               <p class="img__description line_limit">
-                        <router-link class = "img__description" :to="{path: '/' + movie.id}">{{ movie.overview }}</router-link> </p>
+                        {{ movie.overview }}</p>
               <p class = "vote"> <b>Note :</b> {{ movie.vote_average }}/10</p>
             </p>
           </div>
         </div>
+        </router-link>
   </div>
 </template>
 
@@ -54,12 +57,12 @@ li {
   margin: 0 10px;
 }
 
-a {
+.title {
   color: #f15ad3;
   font-style: normal;
   text-decoration: none;
 }
-a:hover {
+.title:hover {
   color: #ffbc5e;
   transition: 0.2s;
 }
