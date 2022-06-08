@@ -2,3 +2,7 @@
   font-family: Avenir, Helvetica, Arial, sans-serif;
   background-color: #40303d;
 }
+
+body {
+  margin:0;
+}
