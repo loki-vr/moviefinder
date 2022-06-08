@@ -2,10 +2,12 @@ const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const indexRouter = require("./routes/index");
-const usersRouter = require("./routes/users");
 const routeNotFoundJsonHandler = require("./services/routeNotFoundJsonHandler");
 const jsonErrorHandler = require("./services/jsonErrorHandler");
+
+const moviesRouter = require("./routes/movies");
+const genresRouter = require("./routes/genres");
+//const populateRouter = require("./routes/dev-populate");
 
 mongoose.connect(process.env.MONGO_DB_URL);
 
@@ -16,9 +18,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Register routes
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
+app.use("/movies", moviesRouter);
+app.use("/genres", genresRouter);
+//app.use("/populate", populateRouter);
 
 // Register 404 middleware and error handler
 app.use(routeNotFoundJsonHandler); // this middleware must be registered after all routes to handle 404 correctly
