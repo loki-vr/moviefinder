@@ -1,36 +1,34 @@
-
 <template>
-
   <div class="movies">
-    <router-link class = "poster" :to="{path: '/' + movie.id}">
-       <img style="height: 200px"
-            class="img_img"
-            :src="`https://image.tmdb.org/t/p/w200${movie.poster_path}`"
-          />
+    <router-link class="poster" :to="{ path: '/' + movie.id }">
+      <img
+        style="height: 200px"
+        class="img_img"
+        :src="`https://image.tmdb.org/t/p/w200${movie.poster_path}`"
+      />
     </router-link>
   </div>
 </template>
 
 <script>
-
 export default {
   name: "Film",
-  props: {movie:Object,},
+  props: { movie: Object },
   methods: {
-      concatener: function (url) {
+    concatener: function (url) {
       return "https://image.tmdb.org/t/p/w200" + url.backdrop_path;
-    },}
-  }
+    },
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 .movies {
   text-align: center;
-  color : white;
+  color: white;
   margin: 5px;
-  margin-bottom:20px;
+  margin-bottom: 20px;
 }
 
 h3 {
@@ -67,7 +65,7 @@ html {
   font-family: helvetica, arial, sans-serif;
 }
 
-/* Présentation des films */ 
+/* Présentation des films */
 .img__wrap {
   position: relative;
   height: 450px;
@@ -108,31 +106,30 @@ html {
   transition: 0.2s;
   transform: translateY(1em);
   text-decoration: none;
-  color:white;
+  color: white;
 }
 
 .img__wrap:hover .img__description {
   transform: translateY(0);
-  color:white;
-
+  color: white;
 }
 
 /* lien vers fiche des films */
-.poster{
-  font-size:larger;
+.poster {
+  font-size: larger;
   color: white;
   text-decoration: none;
 }
 
-.poster:hover{
-  color:#ffbc5e;
+.poster:hover {
+  color: #ffbc5e;
   opacity: 1;
 }
 
 /* notation */
 .vote {
-  text-align:center;
-  font-size:medium;
-  margin-top:10px;
+  text-align: center;
+  font-size: medium;
+  margin-top: 10px;
 }
 </style>
