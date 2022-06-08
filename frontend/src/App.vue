@@ -1,10 +1,17 @@
 <template>
   <div class="nav">
+    <img
+      alt="MorbiusTV logo"
+      src="./assets/morbiustv.png"
+      height="30"
+      align="left"
+    />
     <p class="hover-underline-animation">
-      <router-link class="nav-link" to="/">Home</router-link> |
+      <router-link class="nav-link" to="/">Home</router-link>
     </p>
+    |
     <p class="hover-underline-animation">
-      <router-link class="nav-link" to="/search"> Search </router-link>
+      <router-link class="nav-link" to="/add"> Add films </router-link>
     </p>
   </div>
   <router-view />
@@ -14,11 +21,15 @@
 .nav {
   text-align: center;
   color: white;
-  padding: 30px;
+  padding: 10px;
   top: 0;
   position: fixed;
   width: 100%;
   background-color: #1c181b;
+}
+
+.logo {
+  text-align: left;
 }
 
 .nav-link {
@@ -45,7 +56,6 @@
   display: inline-block;
   position: relative;
   color: white;
-  margin-right: 5px;
 }
 
 .hover-underline-animation:after {
