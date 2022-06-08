@@ -10,6 +10,7 @@
     <ul>
       <li v-for="movie in movies" :key="movie.id"><Movies :movie="movie" /></li>
     </ul>
+   
   </div>
 </template>
 
@@ -47,7 +48,7 @@ export default {
 .home {
   text-align: center;
   color: white;
-  padding-top: 150px;
+  padding-top: 100px;
   font-size: x-large;
   margin-left: 0;
   margin-right: 0;
