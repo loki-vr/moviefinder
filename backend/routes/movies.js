@@ -55,8 +55,15 @@ router.post("/new", async function (req, res) {
   }
 });
 
-router.get("/:_id", async function (req, res) {
-  const movie = await MovieModel.findOne({ _id: req.params._id }).populate(
+router.get("/search/:search", async function (req, res) {
+  const movies = await MovieModel.find({
+    title: { $regex: req.params.search, $options: "i" },
+  }).populate("genres");
+  res.json(movies);
+});
+
+router.get("/:id", async function (req, res) {
+  const movie = await MovieModel.findOne({ _id: req.params.id }).populate(
     "genres"
   );
   res.json(movie);
