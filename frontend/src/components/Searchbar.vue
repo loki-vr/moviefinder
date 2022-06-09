@@ -28,8 +28,8 @@ input {
   font-size: medium;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", sans-serif;
-  background-color: #3e313c;
-  border-bottom: 1.5px solid #ffbc5e;
+  background-color: black;
+  border-bottom: 1.5px solid white;
   margin-top: 15px;
   margin-right: 10px;
   border-radius: 10px;

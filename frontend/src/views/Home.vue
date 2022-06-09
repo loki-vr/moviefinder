@@ -101,7 +101,6 @@ body {
 }
 
 #rotationnage {
-  transform: rotate(-360deg);
   transition: 1s;
 }
 

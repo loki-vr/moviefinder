@@ -46,7 +46,7 @@ body {
   left: 0;
   position: fixed;
   width: 100%;
-  background-color: #1c181b;
+  background-color: black;
   display: flex;
 }
 
