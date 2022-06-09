@@ -13,18 +13,18 @@
             placeholder="Select genre"
           >
             <option value="" disabled selected>Select genre</option>
-            <option v-for="genre in genres" :key="genre.id" value="genre.id">
+            <option v-for="genre in genres" :key="genre.id" :value="genre.id">
               {{ genre.name }}
             </option>
           </select>
           <input
             v-model="movie.poster"
-            type="url"
+            type="text"
             placeholder="Poster TMDB Path"
           />
           <input
             v-model="movie.backdrop"
-            type="url"
+            type="text"
             placeholder="Backdrop TMDB Path"
           />
           <textarea
@@ -48,10 +48,10 @@
             type="number"
             step="0.1"
             placeholder="Average score"
-            max="5"
+            max="10"
             min="0"
           />
-          <input type="submit" value="Send" />
+          <input type="button" @click="addFilm()" value="Send" />
         </form>
       </div>
       <div class="margin">Add</div>
@@ -219,7 +219,7 @@ h1 {
   border: 1.5px solid #ffbc5e;
   width: 100%;
 }
-.add input[type="submit"]:hover,
+.add input[type="button"]:hover,
 .add input[type="button"]:hover {
   border: 1.5px solid #f15ad3;
   transition: 0.2s;
