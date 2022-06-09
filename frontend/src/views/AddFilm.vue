@@ -1,53 +1,60 @@
 <template>
   <body>
-    <div class="add">
-      <h1>Add a new movie</h1>
-      <form ref="addMovieForm">
-        <input v-model="movie.title" type="text" placeholder="Title" />
-        <select
-          v-model="movie.genres"
-          id="genre_id"
-          name="genre"
-          placeholder="Select genre"
-        >
-          <option value="" disabled selected>Select genre</option>
-          <option v-for="genre in genres" :key="genre.id" value="genre.id">
-            {{ genre.name }}
-          </option>
-        </select>
-        <input
-          v-model="movie.poster"
-          type="url"
-          placeholder="Poster TMDB Path"
-        />
-        <input
-          v-model="movie.backdrop"
-          type="url"
-          placeholder="Backdrop TMDB Path"
-        />
-        <textarea v-model="movie.overview" placeholder="Description"></textarea>
-        <input
-          v-model="movie.release_date"
-          type="date"
-          placeholder="Release date"
-        />
-        <input
-          v-model="movie.popularity"
-          type="number"
-          step="0.1"
-          placeholder="Popularity"
-          min="0"
-        />
-        <input
-          v-model="movie.vote_average"
-          type="number"
-          step="0.1"
-          placeholder="Average score"
-          max="5"
-          min="0"
-        />
-        <input type="submit" value="Send" />
-      </form>
+    <div id="container">
+      <div class="margin">Add</div>
+      <div class="add">
+        <h1>Add a new movie</h1>
+        <form ref="addMovieForm">
+          <input v-model="movie.title" type="text" placeholder="Title" />
+          <select
+            v-model="movie.genres"
+            id="genre_id"
+            name="genre"
+            placeholder="Select genre"
+          >
+            <option value="" disabled selected>Select genre</option>
+            <option v-for="genre in genres" :key="genre.id" value="genre.id">
+              {{ genre.name }}
+            </option>
+          </select>
+          <input
+            v-model="movie.poster"
+            type="url"
+            placeholder="Poster TMDB Path"
+          />
+          <input
+            v-model="movie.backdrop"
+            type="url"
+            placeholder="Backdrop TMDB Path"
+          />
+          <textarea
+            v-model="movie.overview"
+            placeholder="Description"
+          ></textarea>
+          <input
+            v-model="movie.release_date"
+            type="date"
+            placeholder="Release date"
+          />
+          <input
+            v-model="movie.popularity"
+            type="number"
+            step="0.1"
+            placeholder="Popularity"
+            min="0"
+          />
+          <input
+            v-model="movie.vote_average"
+            type="number"
+            step="0.1"
+            placeholder="Average score"
+            max="5"
+            min="0"
+          />
+          <input type="submit" value="Send" />
+        </form>
+      </div>
+      <div class="margin">Add</div>
     </div>
   </body>
 </template>
@@ -120,14 +127,26 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-
 <style scoped>
+html,
+body {
+  height: 100%;
+}
 body {
   animation: fadeInAnimation ease 0.5s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
-  margin: 100px;
+}
+
+#container {
+  background-image: url("../assets/mosaique_sombre.png");
+  background-repeat: repeat;
+  background-size: 700px;
+  background-attachment: fixed;
+  padding: 0;
+  margin: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @keyframes fadeInAnimation {
@@ -163,11 +182,11 @@ h1 {
   border-bottom: 3px solid #ffbc5e;
   border-right: 1px solid #ffbc5e;
   border-left: 1px solid #ffbc5e;
-
   border-radius: 20px;
   animation: transAnimation ease 0.5s;
   animation-iteration-count: 1;
   margin: auto;
+  margin-top: 80px;
 }
 
 .add input[type="text"],
@@ -232,5 +251,10 @@ h1 {
 
 .add input[type="date"] {
   color: grey;
+}
+
+.margin {
+  opacity: 0;
+  padding-bottom: 10px;
 }
 </style>
