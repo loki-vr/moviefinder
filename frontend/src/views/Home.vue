@@ -1,7 +1,9 @@
 <template>
   <div class="home">
     <body>
-      <img alt="Vue logo" src="../assets/morbiustv.png" />
+      <div class="logo">
+        <img id="rotationnage" alt="Vue logo" src="../assets/morbiustv.png" />
+      </div>
       <Carousel
         v-if="liked.length"
         :movies="liked"
@@ -84,12 +86,29 @@ body {
 .home {
   text-align: center;
   color: white;
-  padding-top: 100px;
   font-size: x-large;
   margin-left: 0;
   margin-right: 0;
 }
 
+.logo {
+  background-image: url("../assets/mosaique_sombre.png");
+  background-repeat: repeat;
+  background-size: 700px;
+  background-attachment: fixed;
+  padding: 100px;
+  padding-top: 120px;
+}
+
+#rotationnage {
+  transform: rotate(-360deg);
+  transition: 1s;
+}
+
+#rotationnage:hover {
+  transform: rotate(360deg);
+  transition: 1s;
+}
 p {
   text-align: center;
   color: white;
