@@ -22,18 +22,17 @@
             {{ vote(movie.vote_average) }}
           </h3>
 
-          <button v-if="opinion === 1" class="oui-bouton" type="button">
+          <button v-if="opinion === 1" @click="increment()" class="oui-bouton-up" type="button">
             I like it 👍
           </button>
-          <button v-if="opinion === 1" class="non-bouton" type="button">
+          <button v-if="opinion === 0 || opinion == -1" @click="increment()" class="oui-bouton-down" type="button">
+            I like it 👍
+          </button>
+          <button v-if="opinion === -1" @click="decrement()" class="non-bouton-up" type="button">
             I don't like it 👎
           </button>
-          <button
-            v-if="opinion === 1 || opinion === -1"
-            class="remove-bouton"
-            type="button"
-          >
-            Change my opinion
+          <button v-if="opinion === 0 || opinion == 1" @click="decrement()" class="non-bouton-down" type="button">
+            I don't like it 👎
           </button>
 
           <p style="text-align: left">
@@ -98,6 +97,34 @@ export default {
       }
       return found;
     },
+    increment: function() {
+      this.opinion = 1;
+      this.movie.user_opinion = 1;
+      axios
+        .put(`${process.env.VUE_APP_API}/movies/` + this.$route.params.id, this.movie)
+        .then(() => {
+          this.$emit("opinionSaved");
+          console.log("used",this.movie)
+        })
+        .catch((error) => {
+          this.userCreationError = "An error occured while (dis)liking.";
+          console.error(error);
+        });
+    },
+    decrement: function() {
+      this.opinion = -1;
+      this.movie.user_opinion = -1;
+      axios
+        .put(`${process.env.VUE_APP_API}/movies/` + this.$route.params.id, this.movie)
+        .then(() => {
+          this.$emit("opinionSaved");
+          console.log("used",this.movie)
+        })
+        .catch((error) => {
+          this.userCreationError = "An error occured while (dis)liking.";
+          console.error(error);
+        });
+    },
     concatener: function (movie) {
       if (movie.backdrop) {
         return (
@@ -122,6 +149,8 @@ export default {
       .then((response) => {
         // Do something if call succeeded
         this.movie = response.data;
+        this.opinion = this.movie.user_opinion;
+        console.log(this.movie)
       })
       .catch((error) => {
         console.log(error);
@@ -135,6 +164,7 @@ export default {
           .then((response) => {
             // Do something if call succeeded
             this.movie = response.data;
+            this.opinion = this.movie.user_opinion;
           })
           .catch((error) => {
             console.log(error);
@@ -175,7 +205,7 @@ body {
 .texte {
   background: rgba(16, 15, 15, 0.8);
   overflow: auto;
-  width: 30%;
+  width: 45%;
   text-align: center;
   height: 100%;
   color: white;
@@ -202,33 +232,36 @@ h1 {
   animation-fill-mode: forwards;
 }
 
-.oui-bouton {
+.oui-bouton-up {
   background: rgb(66, 114, 30);
   color: white;
   border: rgb(66, 114, 30);
   border-radius: 20px;
   padding: 5px;
+  margin: 2px;
+}
+
+.oui-bouton-down, .non-bouton-down {
+  background: rgb(80, 82, 80);
+  color: white;
+  border: rgb(80, 82, 80);
+  border-radius: 20px;
+  padding: 5px;
+  margin: 2px;
 }
 
 .home {
   height: 100%;
 }
 
-.non-bouton {
+.non-bouton-up {
   background: rgb(125, 51, 51);
   color: white;
   border: rgb(125, 51, 51);
   border-radius: 20px;
   padding: 5px;
   margin-left: 5px;
+  margin: 2px;
 }
 
-.remove-bouton {
-  background: rgb(171, 168, 168);
-  color: white;
-  border: rgb(171, 168, 168);
-  border-radius: 20px;
-  padding: 5px;
-  margin-left: 5px;
-}
 </style>
