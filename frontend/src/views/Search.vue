@@ -19,10 +19,9 @@
 <script>
 import axios from "axios";
 import Movies from "@/components/Movies.vue";
-import Carousel from "@/components/Carousel.vue";
 export default {
   name: "SearchPage",
-  components: { Movies, Carousel },
+  components: { Movies },
   created: async function () {
     try {
       this.results = (
@@ -66,6 +65,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  align-content: flex-start;
 }
 
 .results {
