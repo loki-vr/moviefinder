@@ -42,7 +42,10 @@
             >
             :
           </p>
-          <div style="display: flex; overflow: auto; width: 100%">
+          <div
+            class="recommandation"
+            style="display: flex; overflow: auto; width: 100%"
+          >
             <Film :movie="film1"></Film>
             <Film :movie="film2"></Film>
             <Film :movie="film1"></Film>
@@ -149,12 +152,19 @@ body {
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
-
 @keyframes fadeInAnimation {
   0% {
-    opacity: 0;
+    opacity: 1;
   }
   100% {
+    opacity: 1;
+  }
+}
+@keyframes wait {
+  from {
+    opacity: 0;
+  }
+  to {
     opacity: 1;
   }
 }
@@ -171,16 +181,25 @@ body {
   color: white;
   padding-left: 30px;
   padding-right: 30px;
+  animation: fadeInAnimation ease 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
 .fond-image {
   background-size: cover;
   height: 100%;
   width: 100%;
+  animation: 1s ease-out 0s 1 wait, 0.21s ease-out 1s 1 fadeInAnimation;
 }
-
 h1 {
   font-family: Verdana;
+}
+
+.recommandation {
+  animation: fadeInAnimation ease 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
 .oui-bouton {
