@@ -93,6 +93,10 @@ h1 {
   padding: 16px;
   background: #1c181b;
   border: 3px solid #ffbc5e;
+  border-bottom: 3px solid #ffbc5e;
+  border-right: 1px solid #ffbc5e;
+  border-left: 1px solid #ffbc5e;
+
   border-radius: 20px;
   animation: transAnimation ease 0.5s;
   animation-iteration-count: 1;
