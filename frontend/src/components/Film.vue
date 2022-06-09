@@ -1,13 +1,13 @@
 <template>
-  <div class="movies">
-    <router-link class="poster" :to="{ path: '/' + movie.id }">
+  <router-link class="poster" :to="{ path: '/' + movie.id }">
+    <div class="movies">
       <img
         style="height: 200px"
         class="img_img"
         :src="`https://image.tmdb.org/t/p/w200${movie.poster_path}`"
       />
-    </router-link>
-  </div>
+    </div>
+  </router-link>
 </template>
 
 <script>
