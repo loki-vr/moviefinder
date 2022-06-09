@@ -10,10 +10,10 @@
         <div class="texte">
           <br /><br /><br /><br />
           <h3>{{ movie.title }}</h3>
-           <ul id="example-1">
+          <ul id="example-1">
             <li>🎬</li>
             <li v-for="genre in movie.genres" :key="genre._id">
-              {{ genre.name}}<span> 🎬 </span>
+              {{ genre.name }}<span> 🎬 </span>
             </li>
           </ul>
           <p style="text-align: justify">
@@ -67,21 +67,7 @@
             >
             :
           </p>
-          <div
-            class="recommandation"
-            style="display: flex; overflow: auto; width: 100%"
-          >
-            <Film :movie="film1"></Film>
-            <Film :movie="film2"></Film>
-            <Film :movie="film1"></Film>
-            <Film :movie="film2"></Film>
-            <Film :movie="film1"></Film>
-            <Film :movie="film1"></Film>
-            <Film :movie="film2"></Film>
-            <Film :movie="film1"></Film>
-            <Film :movie="film2"></Film>
-            <Film :movie="film1"></Film>
-          </div>
+          <MiniCarousel :movies="similar" />
         </div>
       </div>
     </div>
@@ -90,11 +76,11 @@
 
 <script>
 import axios from "axios";
-import Film from "@/components/Film.vue";
+import MiniCarousel from "@/components/MiniCarousel.vue";
 export default {
   name: "MoviePage",
   components: {
-    Film,
+    MiniCarousel,
   },
   data: function () {
     return {
@@ -102,32 +88,10 @@ export default {
       movie: {},
       ip: this.$route.params.id,
       opinion: 0,
-      film1: {
-        id: 338953,
-        original_title: "Fantastic Beasts: The Secrets of Dumbledore",
-        poster_path: "/jrgifaYeUtTnaH7NF5Drkgjg2MB.jpg",
-      },
-      film2: {
-        id: 752623,
-        original_title: "The Lost City",
-        poster_path: "/neMZH82Stu91d3iqvLdNQfqPPyl.jpg",
-      },
+      similar: [],
     };
   },
   methods: {
-    g: function (list, id) {
-      let found = list.find((element) => element.id == id);
-      if (!found) {
-        found = {
-          original_title: "ERROR 404",
-          release_date: "never released",
-          vote_average: "0",
-          overview:
-            "Tu es tombé sur un film bien mystérieux qui n'existe pas... Si tu cherches un film qui n'est pas encore dans notre bdd, n'hésite pas à utiliser l'option \"ajouter\" un film et il apparaîtra sur notre site.",
-        };
-      }
-      return found;
-    },
     increment: function () {
       this.opinion = 1;
       this.movie.user_opinion = 1;
@@ -180,18 +144,25 @@ export default {
       return answer;
     },
   },
-  created() {
-    axios
-      .get(process.env.VUE_APP_API + "/movies/" + this.$route.params.id)
-      .then((response) => {
-        // Do something if call succeeded
-        this.movie = response.data;
-        this.opinion = this.movie.user_opinion;
-        console.log(this.movie);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  created: async function () {
+    try {
+      this.movie = (
+        await axios.get(
+          process.env.VUE_APP_API + "/movies/" + this.$route.params.id
+        )
+      ).data;
+      this.opinion = this.movie.user_opinion;
+    } catch (error) {
+      console.log(error);
+    }
+
+    try {
+      this.similar = (
+        await axios.get(process.env.VUE_APP_API + "/movies/liked")
+      ).data;
+    } catch (error) {
+      console.log(error);
+    }
   },
   watch: {
     "$route.params.id": function () {
@@ -204,7 +175,7 @@ export default {
             this.opinion = this.movie.user_opinion;
           })
           .catch((error) => {
-            console.log(error);
+            console.error(error);
           });
       }
     },
@@ -240,9 +211,9 @@ body {
   height: 100%;
 }
 
-li{
-    display: inline;
-    list-style-type: none;
+li {
+  display: inline;
+  list-style-type: none;
 }
 .texte {
   background: rgba(16, 15, 15, 0.8);
@@ -281,6 +252,7 @@ h1 {
   border-radius: 20px;
   padding: 5px;
   margin: 2px;
+  cursor: pointer;
 }
 
 .oui-bouton-down,
@@ -291,6 +263,7 @@ h1 {
   border-radius: 20px;
   padding: 5px;
   margin: 2px;
+  cursor: pointer;
 }
 
 .home {
@@ -305,5 +278,6 @@ h1 {
   padding: 5px;
   margin-left: 5px;
   margin: 2px;
+  cursor: pointer;
 }
 </style>

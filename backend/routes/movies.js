@@ -75,6 +75,16 @@ router.get("/genre/:genre", async function (req, res) {
   res.json(movies);
 });
 
+router.get("/liked", async function (req, res) {
+  const movies = await MovieModel.find({
+    user_opinion: 1,
+  })
+    .skip(req.query.offset ? parseInt(req.query.offset) : 0)
+    .limit(req.query.limit ? parseInt(req.query.limit) : 20)
+    .populate("genres");
+  res.json(movies);
+});
+
 router.get("/:id", async function (req, res) {
   const movie = await MovieModel.findOne({ _id: req.params.id }).populate(
     "genres"

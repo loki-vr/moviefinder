@@ -2,6 +2,7 @@
   <div class="home">
     <body>
       <img alt="Vue logo" src="../assets/morbiustv.png" />
+      <Carousel :movies="liked" title="Movies you can rewatch" />
       <Carousel
         v-for="cat in categories"
         :key="cat[0]._id"
@@ -21,10 +22,19 @@ export default {
   data: function () {
     return {
       categories: [],
+      liked: [],
     };
   },
   created: async function () {
     let genres = [];
+
+    try {
+      this.liked = (
+        await axios.get(process.env.VUE_APP_API + "/movies/liked")
+      ).data;
+    } catch (error) {
+      console.log(error);
+    }
 
     try {
       genres = (await axios.get(process.env.VUE_APP_API + "/genres")).data;

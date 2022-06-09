@@ -1,10 +1,10 @@
 <template>
-  <router-link class="poster" :to="{ path: '/' + movie.id }">
+  <router-link class="poster" :to="{ path: '/' + movie._id }">
     <div class="movies">
       <img
         style="height: 200px"
         class="img_img"
-        :src="`https://image.tmdb.org/t/p/w200${movie.poster_path}`"
+        :src="`https://image.tmdb.org/t/p/w300${movie.poster}`"
       />
     </div>
   </router-link>
@@ -12,13 +12,8 @@
 
 <script>
 export default {
-  name: "Film",
+  name: "Miniature",
   props: { movie: Object },
-  methods: {
-    concatener: function (url) {
-      return "https://image.tmdb.org/t/p/w200" + url.backdrop_path;
-    },
-  },
 };
 </script>
 
