@@ -22,16 +22,36 @@
             {{ vote(movie.vote_average) }}
           </h3>
 
-          <button v-if="opinion === 1" @click="increment()" class="oui-bouton-up" type="button">
+          <button
+            v-if="opinion === 1"
+            @click="increment()"
+            class="oui-bouton-up"
+            type="button"
+          >
             I like it 👍
           </button>
-          <button v-if="opinion === 0 || opinion == -1" @click="increment()" class="oui-bouton-down" type="button">
+          <button
+            v-if="opinion === 0 || opinion == -1"
+            @click="increment()"
+            class="oui-bouton-down"
+            type="button"
+          >
             I like it 👍
           </button>
-          <button v-if="opinion === -1" @click="decrement()" class="non-bouton-up" type="button">
+          <button
+            v-if="opinion === -1"
+            @click="decrement()"
+            class="non-bouton-up"
+            type="button"
+          >
             I don't like it 👎
           </button>
-          <button v-if="opinion === 0 || opinion == 1" @click="decrement()" class="non-bouton-down" type="button">
+          <button
+            v-if="opinion === 0 || opinion == 1"
+            @click="decrement()"
+            class="non-bouton-down"
+            type="button"
+          >
             I don't like it 👎
           </button>
 
@@ -97,28 +117,34 @@ export default {
       }
       return found;
     },
-    increment: function() {
+    increment: function () {
       this.opinion = 1;
       this.movie.user_opinion = 1;
       axios
-        .put(`${process.env.VUE_APP_API}/movies/` + this.$route.params.id, this.movie)
+        .put(
+          `${process.env.VUE_APP_API}/movies/` + this.$route.params.id,
+          this.movie
+        )
         .then(() => {
           this.$emit("opinionSaved");
-          console.log("used",this.movie)
+          console.log("used", this.movie);
         })
         .catch((error) => {
           this.userCreationError = "An error occured while (dis)liking.";
           console.error(error);
         });
     },
-    decrement: function() {
+    decrement: function () {
       this.opinion = -1;
       this.movie.user_opinion = -1;
       axios
-        .put(`${process.env.VUE_APP_API}/movies/` + this.$route.params.id, this.movie)
+        .put(
+          `${process.env.VUE_APP_API}/movies/` + this.$route.params.id,
+          this.movie
+        )
         .then(() => {
           this.$emit("opinionSaved");
-          console.log("used",this.movie)
+          console.log("used", this.movie);
         })
         .catch((error) => {
           this.userCreationError = "An error occured while (dis)liking.";
@@ -150,7 +176,7 @@ export default {
         // Do something if call succeeded
         this.movie = response.data;
         this.opinion = this.movie.user_opinion;
-        console.log(this.movie)
+        console.log(this.movie);
       })
       .catch((error) => {
         console.log(error);
@@ -239,15 +265,18 @@ h1 {
   border-radius: 20px;
   padding: 5px;
   margin: 2px;
+  cursor: pointer;
 }
 
-.oui-bouton-down, .non-bouton-down {
+.oui-bouton-down,
+.non-bouton-down {
   background: rgb(80, 82, 80);
   color: white;
   border: rgb(80, 82, 80);
   border-radius: 20px;
   padding: 5px;
   margin: 2px;
+  cursor: pointer;
 }
 
 .home {
@@ -262,6 +291,6 @@ h1 {
   padding: 5px;
   margin-left: 5px;
   margin: 2px;
+  cursor: pointer;
 }
-
 </style>
