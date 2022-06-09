@@ -12,3 +12,20 @@ body {
   margin: 0;
   height:100%;
 }
+
+.carousel__prev {
+  transform: translate(70%, -50%) !important;
+  filter: drop-shadow(0px 0px 6px #000);
+  background-color: #000;
+  border-color: #fff;
+  border-width: 3px;
+  border-style: solid;
+}
+.carousel__next {
+  transform: translate(-70%, -50%) !important;
+  filter: drop-shadow(0px 0px 6px #000);
+  background-color: #000;
+  border-color: #fff;
+  border-width: 3px;
+  border-style: solid;
+}
