@@ -58,30 +58,11 @@ export default {
         return;
       }
       this.movie.genres = [this.movie.genres];
-<<<<<<< Updated upstream
-      console.log(this.movie);
-=======
->>>>>>> Stashed changes
       axios
         .post(`${process.env.VUE_APP_API}/movies/new`, this.movie)
         .then(() => {
           this.$emit("userAdded");
-<<<<<<< Updated upstream
-          this.movie = {
-            _id: Math.random() * 10 ** 10,
-            title: "",
-            genres: 0,
-            poster: "",
-            backdrop: "",
-            overview: "",
-            release_date: "",
-            popularity: "",
-            vote_average: "",
-            user_opinion: 0,
-          };
-=======
           this.$router.push('/' + this.movie._id)
->>>>>>> Stashed changes
         })
         .catch((error) => {
           this.userCreationError = "An error occured while creating new user.";
