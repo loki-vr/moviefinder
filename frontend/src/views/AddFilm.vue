@@ -3,19 +3,43 @@
     <div class="add">
       <h1>Add a new movie</h1>
       <form ref="addMovieForm">
-        <input  v-model="movie.title" type="text" placeholder="Title" />
-          <select  v-model="movie.genres" id="genre_id" name="genre" placeholder="Select genre">
-            <option value="" disabled selected>Select genre</option>
-            <option v-for="genre in genres" :key="genre.id" value="genre.id">
-              {{ genre.name }}
-            </option>
-          </select>
-        <input  v-model="movie.poster" type="url" placeholder="Poster TMDB Path" />
-        <input  v-model="movie.backdrop" type="url" placeholder="Backdrop TMDB Path" />
+        <input v-model="movie.title" type="text" placeholder="Title" />
+        <select
+          v-model="movie.genres"
+          id="genre_id"
+          name="genre"
+          placeholder="Select genre"
+        >
+          <option value="" disabled selected>Select genre</option>
+          <option v-for="genre in genres" :key="genre.id" value="genre.id">
+            {{ genre.name }}
+          </option>
+        </select>
+        <input
+          v-model="movie.poster"
+          type="url"
+          placeholder="Poster TMDB Path"
+        />
+        <input
+          v-model="movie.backdrop"
+          type="url"
+          placeholder="Backdrop TMDB Path"
+        />
         <textarea v-model="movie.overview" placeholder="Description"></textarea>
-        <input v-model="movie.release_date" type="date" placeholder="Release date" />
-        <input v-model="movie.popularity" type="number" step="0.1" placeholder="Popularity" min="0" />
-        <input v-model="movie.vote_average"
+        <input
+          v-model="movie.release_date"
+          type="date"
+          placeholder="Release date"
+        />
+        <input
+          v-model="movie.popularity"
+          type="number"
+          step="0.1"
+          placeholder="Popularity"
+          min="0"
+        />
+        <input
+          v-model="movie.vote_average"
           type="number"
           step="0.1"
           placeholder="Average score"
@@ -37,16 +61,17 @@ export default {
     return {
       genres: [],
       movie: {
-      _id: Math.random()*10**10,
-      title: "",
-      genres: 0,
-      poster: "",
-      backdrop: "",
-      overview: "",
-      release_date: "",
-      popularity: "",
-      vote_average: "",
-      user_opinion: 0,},
+        _id: Math.random() * 10 ** 10,
+        title: "",
+        genres: 0,
+        poster: "",
+        backdrop: "",
+        overview: "",
+        release_date: "",
+        popularity: "",
+        vote_average: "",
+        user_opinion: 0,
+      },
       userCreationError: "",
     };
   },
@@ -57,22 +82,23 @@ export default {
         return;
       }
       this.movie.genres = [this.movie.genres];
-      console.log(this.movie)
+      console.log(this.movie);
       axios
         .post(`${process.env.VUE_APP_API}/movies/new`, this.movie)
         .then(() => {
           this.$emit("userAdded");
           this.movie = {
-          _id: Math.random()*10**10,
-          title: "",
-          genres: 0,
-          poster: "",
-          backdrop: "",
-          overview: "",
-          release_date: "",
-          popularity: "",
-          vote_average: "",
-          user_opinion: 0,};
+            _id: Math.random() * 10 ** 10,
+            title: "",
+            genres: 0,
+            poster: "",
+            backdrop: "",
+            overview: "",
+            release_date: "",
+            popularity: "",
+            vote_average: "",
+            user_opinion: 0,
+          };
         })
         .catch((error) => {
           this.userCreationError = "An error occured while creating new user.";
