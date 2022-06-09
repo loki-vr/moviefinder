@@ -1,23 +1,26 @@
 <template>
-  <div class="searchbar" placeholder="Search"></div>
-  <input />
+  <div>
+    <input type="text" :value="modelValue" @input="updateValue" />
+  </div>
 </template>
 
 <script>
 export default {
   name: "Searchbar",
+  props: {
+    modelValue: String,
+  },
+  methods: {
+    updateValue(event) {
+      this.$emit("update:modelValue", event.target.value);
+    },
+  },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style scoped>
-.searchbar {
-  text-align: center;
-  color: white;
-  font-size: x-large;
-}
-
 input {
   color: white;
   height: 50px;

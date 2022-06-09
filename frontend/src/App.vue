@@ -22,16 +22,39 @@
           <router-link class="nav-link" to="/add"> Add films </router-link>
         </p>
       </div>
-      <div class="search"><Searchbar /></div>
+      <div class="search"><Searchbar v-model="search" /></div>
     </div>
     <router-view />
   </body>
 </template>
 <script>
 import Searchbar from "@/components/Searchbar.vue";
+
 export default {
   name: "App",
   components: { Searchbar },
+  watch: {
+    search: function () {
+      if (this.search == "") {
+        this.$router.push(this.basePath);
+      } else {
+        this.$router.push("/search/" + this.search);
+      }
+    },
+    "$route.fullPath": function () {
+      if (!this.$route.fullPath.startsWith("/search")) {
+        this.basePath = this.$route.fullPath;
+      }
+    },
+  },
+  data() {
+    return {
+      search: ``,
+    };
+  },
+  created: async function () {
+    this.basePath = this.$route.fullPath;
+  },
 };
 </script>
 <style scoped>

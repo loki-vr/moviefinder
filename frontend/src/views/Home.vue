@@ -97,7 +97,7 @@ body {
   background-size: 700px;
   background-attachment: fixed;
   padding: 100px;
-  padding-top: 120px;
+  padding-bottom: 60px;
 }
 
 #rotationnage {
