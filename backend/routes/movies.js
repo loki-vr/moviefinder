@@ -36,6 +36,7 @@ router.post("/new", async function (req, res) {
     }
     let newMovie = new MovieModel(movieParams);
     const movie = await newMovie.save();
+    console.log(movie);
     res.status(201).json(movie);
 
     /*
