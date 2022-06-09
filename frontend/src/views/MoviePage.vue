@@ -8,7 +8,7 @@
     >
       <div class="inside">
         <div class="texte">
-          <br /><br /><br /><br />
+          <div style="height: 100px"></div>
           <h3>{{ movie.title }}</h3>
           <ul id="example-1">
             <li>🎬</li>
