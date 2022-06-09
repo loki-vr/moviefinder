@@ -2,7 +2,11 @@
   <div class="home">
     <body>
       <img alt="Vue logo" src="../assets/morbiustv.png" />
-      <Carousel :movies="liked" title="Movies you can rewatch" />
+      <Carousel
+        v-if="liked.length"
+        :movies="liked"
+        title="Movies you can rewatch"
+      />
       <Carousel
         v-for="cat in categories"
         :key="cat[0]._id"
