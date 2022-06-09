@@ -9,7 +9,7 @@
       <div class="inside">
         <div class="texte">
           <br /><br /><br /><br />
-          <h1>{{ movie.title }}</h1>
+          <h3>{{ movie.title }}</h3>
           <p style="text-align: justify">
             {{ movie.overview }}
           </p>
@@ -17,10 +17,10 @@
             Release Date :
             {{ new Date(movie.release_date).toLocaleDateString("en-US") }}
           </h4>
-          <h2>
+          <h3>
             {{ movie.vote_average / 2 }}/5
             {{ vote(movie.vote_average) }}
-          </h2>
+          </h3>
 
           <button v-if="opinion === 1" class="oui-bouton" type="button">
             I like it 👍
@@ -67,6 +67,7 @@ export default {
     return {
       movieName: "h",
       movie: {},
+      ip: this.$route.params.id,
       opinion: 0,
       film1: {
         id: 338953,
@@ -122,6 +123,21 @@ export default {
       .catch((error) => {
         console.log(error);
       });
+  },
+  watch: {
+    "$route.params.id": function () {
+      if (this.$route.params.id) {
+        axios
+          .get(process.env.VUE_APP_API + "/movies/" + this.$route.params.id)
+          .then((response) => {
+            // Do something if call succeeded
+            this.movie = response.data;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    },
   },
 };
 </script>
