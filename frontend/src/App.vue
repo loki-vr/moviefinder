@@ -9,6 +9,7 @@
               src="./assets/morbiustv.png"
               height="30"
             />
+            MorbiusTV+
           </div>
         </router-link>
       </div>
@@ -109,10 +110,11 @@ body {
 
 .morbiuslogo {
   margin: 10px;
+  color: white;
 }
 
 .morbiuslogo:hover {
-  opacity: 0.7;
+  opacity: 0.9;
   transition: 0.2s;
 }
 </style>

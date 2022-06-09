@@ -1,39 +1,32 @@
 <template>
   <body>
-    <div class="addfilm">
-      <h1>Ajout de films sur MorbiusTV+</h1>
-      <p>Pour ajouter des films :</p>
-    </div>
-    <div class="formulaire">
-      <div class="column">
-        <p>Title</p>
-        <p>Genre</p>
-        <p>Poster</p>
-        <p>Backdrop</p>
-        <p>Overview</p>
-        <p>Release date</p>
-        <p>Popularity</p>
-        <p>Average Score:</p>
-      </div>
-      <input placeholder="Title" />
+    <div class="add">
+      <h1>Add a new movie</h1>
       <form>
-        <select id="genre_id" name="genre">
-          <option value="select">Select</option>
-          <option v-for="genre in genres" :key="genre.id" value="genre.name">
-            {{ genre.name }}
-          </option>
-        </select>
+        <input type="text" placeholder="Title" />
+        <form>
+          <select id="genre_id" name="genre" placeholder="Select genre">
+            <option value="" disabled selected>Select genre</option>
+            <option v-for="genre in genres" :key="genre.id" value="genre.name">
+              {{ genre.name }}
+            </option>
+          </select>
+        </form>
+        <input type="url" placeholder="Poster TMDB Path" />
+        <input type="url" placeholder="Backdrop TMDB Path" />
+        <textarea placeholder="Description"></textarea>
+        <input type="date" placeholder="Release date" />
+        <input type="number" step="0.1" placeholder="Popularity" min="0" />
+        <input
+          type="number"
+          step="0.1"
+          placeholder="Average score"
+          max="5"
+          min="0"
+        />
+        <input type="submit" value="Send" />
       </form>
-      <p><input placeholder="TMDB Path" /></p>
-      <p><input placeholder="TMDB Path" /></p>
-      <p><textarea placeholder="Description"></textarea></p>
-      <input type="date" class="date" />
-      <p><input type="number" step="0.1" /></p>
-      <p><input type="number" step="0.1" max="5" /></p>
     </div>
-    <p>
-      <button>Submit</button>
-    </p>
   </body>
 </template>
 
@@ -67,6 +60,7 @@ body {
   animation: fadeInAnimation ease 0.5s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
+  margin: 100px;
 }
 
 @keyframes fadeInAnimation {
@@ -78,154 +72,94 @@ body {
   }
 }
 
-.addfilm {
-  text-align: center;
-  color: white;
-  padding-top: 150px;
-  font-size: x-large;
-  margin-left: 0;
-  margin-right: 0;
+@keyframes transAnimation {
+  0% {
+    transform: translateX(100px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
-.formulaire {
+h1 {
   color: white;
-  font-size: medium;
-  padding: 20px;
-}
-.column {
-  float: left;
-  padding: 10px;
-  margin-left: 150px;
-  border-right: 2px solid #1c181b;
-  width: auto;
-  text-align: left;
+  text-decoration: overline 1px;
+  font-variant: small-caps;
 }
 
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
+.add {
+  max-width: 500px;
+  margin: 10px auto;
+  padding: 16px;
+  background: #1c181b;
+  border: 3px solid #ffbc5e;
+  border-radius: 20px;
+  animation: transAnimation ease 0.5s;
+  animation-iteration-count: 1;
+  margin: auto;
 }
-p {
-  text-align: center;
-  color: white;
-  font-size: medium;
-  margin-top: 10px;
-}
-input {
-  background-color: #1c181b;
+
+.add input[type="text"],
+.add input[type="date"],
+.add input[type="number"],
+.add input[type="search"],
+.add input[type="url"],
+.add textarea,
+.add select {
+  outline: none;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  width: 100%;
+  background: #1c181b;
+  margin-bottom: 4%;
+  border: none;
   border-bottom: 1.5px solid #ffbc5e;
-  width: 30%;
-  height: 30px;
-  font-size: medium;
-  color: white;
-  padding: 10px;
-  text-align: center;
   border-radius: 4px;
-  margin: 10px;
-}
-textarea {
-  background-color: #1c181b;
-  font-family: Arial, Helvetica, sans-serif;
-  border-bottom: 1.5px solid #ffbc5e;
-  width: 30%;
-  height: 30px;
-  font-size: medium;
+  padding: 3%;
   color: white;
-  padding: 10px;
-  text-align: center;
-  border-radius: 4px;
-  margin: 10px;
+  font: 95% Arial, Helvetica, sans-serif;
 }
-
-input:hover {
-  font-size: medium;
-  padding: 10px;
+.add input[type="text"]:hover,
+.add input[type="date"]:hover,
+.add input[type="number"]:hover,
+.add input[type="search"]:hover,
+.add input[type="url"]:hover,
+.add textarea:hover,
+.add select:hover {
   border-bottom: 1.5px solid #f15ad3;
   transition: 0.2s;
 }
-
-input.overview {
-  height: 200px;
-  text-align: left;
-}
-
-input.date {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-input.image {
-  width: 90%;
-  color: white;
-  text-align: center;
-  font-size: medium;
-  padding: 16px 20px;
-  border: none;
-  width: 31%;
-  height: 30px;
-  border-bottom: 1.5px solid #ffbc5e;
-  border-radius: 4px;
-  background-color: #1c181b;
-  margin: 10px;
-}
-
-input.image:hover {
-  border-bottom: 1.5px solid #f15ad3;
-}
-select {
-  width: 90%;
-  color: white;
-  text-align: center;
-  font-size: medium;
-  padding: 16px 20px;
-  border: none;
-  width: 31%;
-  height: 30px;
-  border-bottom: 1.5px solid #ffbc5e;
-  border-radius: 4px;
-  background-color: #1c181b;
-  margin: 10px;
-}
-select:hover {
-  border-bottom: 1.5px solid #f15ad3;
-}
-
-input.date {
-  background-color: #1c181b;
-  border-bottom: 1.5px solid #ffbc5e;
-}
-
-button {
+.add input[type="submit"] {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   background-color: #1c181b;
   color: white;
-  font-size: medium;
   padding: 10px;
   border-radius: 4px;
   border: 1.5px solid #ffbc5e;
-  width: 500px;
+  width: 100%;
 }
-button:hover {
+.add input[type="submit"]:hover,
+.add input[type="button"]:hover {
   border: 1.5px solid #f15ad3;
   transition: 0.2s;
   width: 400px;
 }
-a {
-  color: #f15ad3;
-  font-style: normal;
-  text-decoration: none;
-}
-a:hover {
-  color: #ffbc5e;
+
+.add input[type="text"]:focus,
+.add input[type="date"]:focus,
+.add input[type="number"]:focus,
+.add input[type="search"]:focus,
+.add input[type="url"]:focus,
+.add textarea:hover,
+.add select:hover {
+  border-bottom: 1.5px solid #f15ad3;
   transition: 0.2s;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
-html {
-  font-family: helvetica, arial, sans-serif;
+.add input[type="date"] {
+  color: grey;
 }
 </style>

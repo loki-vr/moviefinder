@@ -21,14 +21,17 @@ export default {
 input {
   color: white;
   height: 50px;
-  width: 300px;
-  padding-left: 45px;
+  width: 25%;
+  position: fixed;
+  right: 0;
+  top: 0;
   font-size: medium;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", sans-serif;
   background-color: #3e313c;
   border-bottom: 1.5px solid #ffbc5e;
-  margin: 2%;
+  margin-top: 15px;
+  margin-right: 10px;
   border-radius: 10px;
   background-image: url("../assets/magnifier1.png");
   background-position: 10px 10px;

@@ -133,7 +133,6 @@ body {
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
-
 @keyframes fadeInAnimation {
   0% {
     opacity: 0;
@@ -161,8 +160,10 @@ body {
   background-size: cover;
   height: 100%;
   width: 100%;
+  animation: fadeInAnimation ease 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
-
 h1 {
   font-family: Verdana;
 }

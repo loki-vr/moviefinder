@@ -1,12 +1,7 @@
 <template>
   <div class="home">
     <body>
-      <img alt="Vue logo" src="../assets/morbiustv.png" />
-      <h1>MorbiusTV+</h1>
-      <p>
-        Les meilleures recommandations de films tels que Morbius sont sur
-        MorbiusTV+!
-      </p>
+      Trending
       <ul>
         <li v-for="movie in movies" :key="movie.id">
           <Movies :movie="movie" />
