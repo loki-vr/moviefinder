@@ -62,4 +62,8 @@ export default defineComponent({
 .carousel__slide--active > .carousel__item {
   transform: scale(1.1);
 }
+
+h1 {
+  font-size: larger;
+}
 </style>
