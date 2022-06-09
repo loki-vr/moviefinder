@@ -2,6 +2,7 @@
   <div>
     <body>
       <div class="results">
+        <div style="height: 100px"></div>
         <h1 style="color: white" v-if="!results.length">No result found.</h1>
         <div class="movies">
           <Movies
@@ -66,9 +67,5 @@ export default {
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-content: flex-start;
-}
-
-.results {
-  padding-top: 100px;
 }
 </style>
