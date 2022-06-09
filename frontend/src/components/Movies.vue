@@ -4,7 +4,8 @@
       <div class="img__wrap">
         <img
           class="img_img"
-          :src="`https://image.tmdb.org/t/p/w300${movie.poster}`"
+          :src="`https://image.tmdb.org/t/p/w500${movie.poster}`"
+          :style="`width:${width || 300}px`"
         />
         <div class="img__description_layer">
           <div class="img__description">
@@ -25,7 +26,7 @@
 <script>
 export default {
   name: "Movies",
-  props: { movie: Object },
+  props: { movie: Object, width: Number },
 };
 </script>
 
@@ -73,11 +74,14 @@ html {
   font-family: helvetica, arial, sans-serif;
 }
 
+.img_img {
+  height: 100%;
+}
+
 /* Présentation des films */
 .img__wrap {
   position: relative;
-  height: 450px;
-  width: 300px;
+  aspect-ratio: 2/3;
 }
 
 .img__description_layer {

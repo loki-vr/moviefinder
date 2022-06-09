@@ -28,7 +28,6 @@ router.post("/new", async function (req, res) {
   try {
     let movieParams = {};
     for (const param of movie_params) {
-      console.error(param);
       if (req.body[param] !== undefined) {
         movieParams[param] = req.body[param];
       } else {
@@ -58,14 +57,20 @@ router.post("/new", async function (req, res) {
 router.get("/search/:search", async function (req, res) {
   const movies = await MovieModel.find({
     title: { $regex: req.params.search, $options: "i" },
-  }).populate("genres");
+  })
+    .skip(req.query.offset ? parseInt(req.query.offset) : 0)
+    .limit(req.query.limit ? parseInt(req.query.limit) : 20)
+    .populate("genres");
   res.json(movies);
 });
 
 router.get("/genre/:genre", async function (req, res) {
   const movies = await MovieModel.find({
     genres: parseInt(req.params.genre, 10),
-  });
+  })
+    .skip(req.query.offset ? parseInt(req.query.offset) : 0)
+    .limit(req.query.limit ? parseInt(req.query.limit) : 20)
+    .populate("genres");
   res.json(movies);
 });
 
@@ -78,11 +83,12 @@ router.get("/:id", async function (req, res) {
 
 router.put("/:id", async function (req, res) {
   let updatedMovie = {};
-  for (const param in movie_params) {
+  for (const param of movie_params) {
     if (req.body[param] !== undefined) {
       updatedMovie[param] = req.body[param];
     }
   }
+  console.log(updatedMovie);
   try {
     const movies = await MovieModel.findOneAndUpdate(
       { _id: req.params.id },
