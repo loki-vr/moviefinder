@@ -1,19 +1,17 @@
 <template>
   <div>
     <body>
-      <h1 style="color: white" v-if="!results.length">No result found.</h1>
-      <h1 style="color: white" v-if="!results.length">No result found.</h1>
-      <ul>
-        <li>
-          <Carousel :movies="results" title="Results" />
+      <div class="results">
+        <h1 style="color: white" v-if="!results.length">No result found.</h1>
+        <div class="movies">
           <Movies
             v-for="movie in results"
             :key="movie._id"
             :movie="movie"
-            width="100px"
+            width="200"
           />
-        </li>
-      </ul>
+        </div>
+      </div>
     </body>
   </div>
 </template>
@@ -62,3 +60,15 @@ export default {
   },
 };
 </script>
+
+<style>
+.movies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.results {
+  padding-top: 100px;
+}
+</style>

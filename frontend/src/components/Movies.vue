@@ -1,5 +1,5 @@
 <template>
-  <div class="movies">
+  <div class="movies" :style="`width:${width || 300}px`">
     <router-link class="poster" :to="{ path: '/' + movie._id }">
       <div class="img__wrap">
         <img
@@ -37,6 +37,7 @@ export default {
   color: white;
   margin: 5px;
   margin-bottom: 20px;
+  aspect-ratio: 2/3;
 }
 
 h3 {
