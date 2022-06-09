@@ -5,40 +5,35 @@
       <p>Pour ajouter des films :</p>
     </div>
     <div class="formulaire">
-      <div class="column left">
-        <p>Title:</p>
-
-        <p>Genre:</p>
-        <form>
-          <select id="genre_id" name="genre">
-            <option value="select">Select</option>
-            <option v-for="genre in genres" :key="genre.id" value="genre.name">
-              {{ genre.name }}
-            </option>
-          </select>
-        </form>
-
-        <p>
-          Poster:
-          <input placeholder="TMDB Path" />
-        </p>
-        <p>
-          Backdrop:
-          <input placeholder="TMDB Path" />
-        </p>
-
-        <p>Overview: <textarea placeholder="Description"></textarea></p>
-
-        <p>Release date : <input type="date" class="date" /></p>
-
-        <p>Popularity: <input type="number" step="0.1" /></p>
-        <p>Average Score: <input type="number" step="0.1" max="5" /></p>
-        <div></div>
-        <button>Submit</button>
-
-        <div class="columnright"><input placeholder="Title" /></div>
+      <div class="column">
+        <p>Title</p>
+        <p>Genre</p>
+        <p>Poster</p>
+        <p>Backdrop</p>
+        <p>Overview</p>
+        <p>Release date</p>
+        <p>Popularity</p>
+        <p>Average Score:</p>
       </div>
+      <input placeholder="Title" />
+      <form>
+        <select id="genre_id" name="genre">
+          <option value="select">Select</option>
+          <option v-for="genre in genres" :key="genre.id" value="genre.name">
+            {{ genre.name }}
+          </option>
+        </select>
+      </form>
+      <p><input placeholder="TMDB Path" /></p>
+      <p><input placeholder="TMDB Path" /></p>
+      <p><textarea placeholder="Description"></textarea></p>
+      <input type="date" class="date" />
+      <p><input type="number" step="0.1" /></p>
+      <p><input type="number" step="0.1" max="5" /></p>
     </div>
+    <p>
+      <button>Submit</button>
+    </p>
   </body>
 </template>
 
@@ -84,10 +79,7 @@ body {
     opacity: 1;
   }
 }
-.container {
-  display: flex;
-  flex-direction: row;
-}
+
 .addfilm {
   text-align: center;
   color: white;
@@ -95,25 +87,26 @@ body {
   font-size: x-large;
   margin-left: 0;
   margin-right: 0;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 .formulaire {
   color: white;
   font-size: medium;
-  text-align: center;
   padding: 20px;
 }
 .column {
   float: left;
+  padding: 10px;
+  margin-left: 150px;
+  border-right: 2px solid #1c181b;
+  width: auto;
+  text-align: left;
 }
 
-.left {
-  width: 25%;
-}
-
-.right {
-  width: 75%;
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 p {
   text-align: center;
