@@ -7,36 +7,50 @@
         Les meilleures recommandations de films tels que Morbius sont sur
         MorbiusTV+!
       </p>
-      <ul>
-        <li v-for="movie in movies" :key="movie.id">
-          <Movies :movie="movie" />
-        </li>
-      </ul>
+      <Carousel
+        v-for="cat in categories"
+        :key="cat[0]._id"
+        :movies="cat[1]"
+        :title="cat[0].name"
+      />
     </body>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import Movies from "@/components/Movies.vue";
+import Carousel from "@/components/Carousel.vue";
 export default {
   name: "Home",
-  components: { Movies },
+  components: { Carousel },
   data: function () {
     return {
-      movies: [],
+      categories: [],
     };
   },
-  created() {
-    axios
-      .get(process.env.VUE_APP_API + "/movies")
-      .then((response) => {
-        console.log(response);
-        this.movies = response.data;
-      })
-      .catch((error) => {
+  created: async function () {
+    let genres = [];
+
+    try {
+      genres = (await axios.get(process.env.VUE_APP_API + "/genres")).data;
+    } catch (error) {
+      console.log(error);
+    }
+
+    //genres.sort(() => 0.5 - Math.random());
+    //genres = genres.slice(0, 5);
+
+    for (const g of genres) {
+      let m = [];
+      try {
+        m = (
+          await axios.get(process.env.VUE_APP_API + "/movies/genre/" + g._id)
+        ).data;
+      } catch (error) {
         console.log(error);
-      });
+      }
+      this.categories.push([g, m]);
+    }
   },
 };
 </script>
