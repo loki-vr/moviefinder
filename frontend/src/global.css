@@ -11,6 +11,9 @@ body {
   background-color: black;
   margin: 0;
   height:100%;
+  background-repeat: repeat;
+  background: radial-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
+  
 }
 
 .carousel__prev {
