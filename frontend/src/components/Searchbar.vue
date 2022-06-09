@@ -37,6 +37,7 @@ input {
   background-position: 10px 10px;
   background-repeat: no-repeat;
   background-size: 30px 30px;
+  padding-left: 50px;
 }
 
 input:hover {

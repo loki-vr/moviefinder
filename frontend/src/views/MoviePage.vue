@@ -10,6 +10,12 @@
         <div class="texte">
           <br /><br /><br /><br />
           <h3>{{ movie.title }}</h3>
+          <ul id="example-1">
+            <li>🎬</li>
+            <li v-for="genre in movie.genres" :key="genre._id">
+              {{ genre.name }}<span> 🎬 </span>
+            </li>
+          </ul>
           <p style="text-align: justify">
             {{ movie.overview }}
           </p>
@@ -203,6 +209,11 @@ body {
 .inside {
   color: white;
   height: 100%;
+}
+
+li {
+  display: inline;
+  list-style-type: none;
 }
 .texte {
   background: rgba(16, 15, 15, 0.8);

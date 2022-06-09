@@ -11,18 +11,18 @@
           placeholder="Select genre"
         >
           <option value="" disabled selected>Select genre</option>
-          <option v-for="genre in genres" :key="genre.id" value="genre.id">
+          <option v-for="genre in genres" :key="genre._id" :value="genre._id">
             {{ genre.name }}
           </option>
         </select>
         <input
           v-model="movie.poster"
-          type="url"
+          type="text"
           placeholder="Poster TMDB Path"
         />
         <input
           v-model="movie.backdrop"
-          type="url"
+          type="text"
           placeholder="Backdrop TMDB Path"
         />
         <textarea v-model="movie.overview" placeholder="Description"></textarea>
@@ -34,19 +34,19 @@
         <input
           v-model="movie.popularity"
           type="number"
-          step="0.1"
+          step="100"
           placeholder="Popularity"
           min="0"
         />
         <input
           v-model="movie.vote_average"
           type="number"
-          step="0.1"
+          step="1"
           placeholder="Average score"
-          max="5"
+          max="10"
           min="0"
         />
-        <input type="submit" value="Send" />
+        <input type="button" @click="addFilm()" value="Send" />
       </form>
     </div>
   </body>
@@ -76,29 +76,17 @@ export default {
     };
   },
   methods: {
-    addUser: function () {
+    addFilm: function () {
       if (!this.$refs.addMovieForm.checkValidity()) {
         this.$refs.addMovieForm.reportValidity();
         return;
       }
       this.movie.genres = [this.movie.genres];
-      console.log(this.movie);
       axios
         .post(`${process.env.VUE_APP_API}/movies/new`, this.movie)
         .then(() => {
           this.$emit("userAdded");
-          this.movie = {
-            _id: Math.random() * 10 ** 10,
-            title: "",
-            genres: 0,
-            poster: "",
-            backdrop: "",
-            overview: "",
-            release_date: "",
-            popularity: "",
-            vote_average: "",
-            user_opinion: 0,
-          };
+          this.$router.push("/" + this.movie._id);
         })
         .catch((error) => {
           this.userCreationError = "An error occured while creating new user.";
@@ -201,7 +189,7 @@ h1 {
   border-bottom: 1.5px solid #f15ad3;
   transition: 0.2s;
 }
-.add input[type="submit"] {
+.add input[type="button"] {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
