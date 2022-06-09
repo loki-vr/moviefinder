@@ -53,12 +53,13 @@ li {
 }
 
 .title {
-  color: #f15ad3;
+  color: white;
   font-style: normal;
   text-decoration: none;
 }
 .title:hover {
-  color: #ffbc5e;
+  color: white;
+  opacity: 0.7;
   transition: 0.2s;
 }
 

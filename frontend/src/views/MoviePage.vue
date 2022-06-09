@@ -128,6 +128,20 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+body {
+  animation: fadeInAnimation ease 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .inside {
   color: white;
   height: 100%;
@@ -135,7 +149,7 @@ export default {
 .texte {
   background: rgba(16, 15, 15, 0.8);
   overflow: auto;
-  width: 45%;
+  width: 30%;
   text-align: center;
   height: 100%;
   color: white;

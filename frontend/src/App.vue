@@ -1,29 +1,42 @@
 <template>
-  <div class="nav">
-    <div style="margin: auto">
-      <router-link class="nav-link" to="/">
-        <img
-          alt="MorbiusTV logo"
-          src="./assets/morbiustv.png"
-          height="30"
-          align="left"
-        />
-      </router-link>
+  <body>
+    <div class="nav">
+      <div style="margin: auto">
+        <router-link class="nav-link" to="/">
+          <div class="morbiuslogo">
+            <img
+              alt="MorbiusTV logo"
+              src="./assets/morbiustv.png"
+              height="30"
+            />
+          </div>
+        </router-link>
+      </div>
+      <div class="menu">
+        <p class="hover-underline-animation">
+          <router-link class="nav-link" to="/">Home</router-link>
+        </p>
+        |
+        <p class="hover-underline-animation">
+          <router-link class="nav-link" to="/add"> Add films </router-link>
+        </p>
+      </div>
+      <div class="search"><Searchbar /></div>
     </div>
-    <div style="text-align: center; width: 100%; margin: auto">
-      <p class="hover-underline-animation">
-        <router-link class="nav-link" to="/">Home</router-link>
-      </p>
-      |
-      <p class="hover-underline-animation">
-        <router-link class="nav-link" to="/add"> Add films </router-link>
-      </p>
-    </div>
-  </div>
-  <router-view />
+    <router-view />
+  </body>
 </template>
-
+<script>
+import Searchbar from "@/components/Searchbar.vue";
+export default {
+  name: "App",
+  components: { Searchbar },
+};
+</script>
 <style scoped>
+body {
+  text-align: center;
+}
 .nav {
   text-align: center;
   z-index: 1;
@@ -34,6 +47,11 @@
   width: 100%;
   background-color: #1c181b;
   display: flex;
+}
+
+.menu {
+  width: 100%;
+  margin: auto;
 }
 
 .logo {
@@ -82,5 +100,19 @@
 .hover-underline-animation:hover:after {
   transform: scaleX(1);
   transform-origin: bottom left;
+}
+
+.search {
+  margin: 10px;
+  margin-right: 20px;
+}
+
+.morbiuslogo {
+  margin: 10px;
+}
+
+.morbiuslogo:hover {
+  opacity: 0.7;
+  transition: 0.2s;
 }
 </style>
