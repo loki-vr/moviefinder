@@ -3,6 +3,7 @@ import Home from "../views/Home.vue";
 import MoviePage from "../views/MoviePage.vue";
 import AddFilm from "../views/AddFilm.vue";
 import Search from "../views/Search.vue";
+import Genre from "../views/GenrePage.vue";
 
 const routes = [
   {
@@ -17,6 +18,10 @@ const routes = [
   {
     path: "/search/:search",
     component: Search,
+  },
+  {
+    path: "/genre/:genre",
+    component: Genre,
   },
   { path: "/add", component: AddFilm },
 ];

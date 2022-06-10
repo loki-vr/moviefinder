@@ -11,9 +11,12 @@
           <div style="height: 100px"></div>
           <h3>{{ movie.title }}</h3>
           <ul id="example-1">
-            <li>🎬</li>
+            <li>🎬 &nbsp;&nbsp;</li>
             <li v-for="genre in movie.genres" :key="genre._id">
-              {{ genre.name }}<span> 🎬 </span>
+              <router-link class="genreLink" :to="'/genre/' + genre._id">{{
+                genre.name
+              }}</router-link
+              ><span> &nbsp; &nbsp;</span>
             </li>
           </ul>
           <p style="text-align: justify">
@@ -62,9 +65,7 @@
           </button>
 
           <p style="text-align: left">
-            <span style="text-decoration: underline"
-              >Similar films and series</span
-            >
+            <span>Similar films and series</span>
             :
           </p>
           <MiniCarousel :movies="similar" />
@@ -281,5 +282,10 @@ h1 {
   margin-left: 5px;
   margin: 2px;
   cursor: pointer;
+}
+
+.genreLink {
+  text-decoration: none;
+  color: white;
 }
 </style>
