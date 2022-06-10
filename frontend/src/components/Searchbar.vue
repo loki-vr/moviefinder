@@ -32,7 +32,7 @@ input {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", sans-serif;
   background-color: black;
-  border-bottom: 1.5px solid white;
+  border-bottom: 1.5px solid #ffbc5e;
   margin-top: 15px;
   margin-right: 10px;
   border-radius: 10px;
