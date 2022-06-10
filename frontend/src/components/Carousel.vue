@@ -1,5 +1,7 @@
 <template>
-  <h1 class="title">{{ title }}</h1>
+  <router-link class="link" :to="link">
+    <h1 class="title">{{ title }}</h1>
+  </router-link>
   <Carousel
     :autoplay="2000"
     :itemsToShow="7"
@@ -34,7 +36,7 @@ export default defineComponent({
     Navigation,
   },
 
-  props: { movies: [Object], title: String },
+  props: { movies: [Object], title: String, link: String },
 });
 </script>
 
@@ -63,7 +65,13 @@ export default defineComponent({
   transform: scale(1.1);
 }
 
+.link {
+  color: white;
+  text-decoration: none;
+}
+
 h1 {
   font-size: larger;
+  margin-left: 20px;
 }
 </style>

@@ -4,12 +4,13 @@
       <div class="logo">
         <img id="rotationnage" alt="Vue logo" src="../assets/morbiustv.png" />
       </div>
-      <Carousel v-if="liked.length" :movies="liked" title="Rewatch" />
+      <Carousel v-if="liked.length" :movies="liked" title="Rewatch" link="/" />
       <Carousel
         v-for="cat in categories"
         :key="cat[0]._id"
         :movies="cat[1]"
         :title="cat[0].name"
+        :link="`/genre/` + cat[0]._id"
       />
     </body>
   </div>
