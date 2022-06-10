@@ -230,9 +230,6 @@ li {
   width: 100%;
   animation: 1s ease-out 0s 1 wait, 0.21s ease-out 1s 1 fadeInAnimation;
 }
-h1 {
-  font-family: Verdana;
-}
 
 .recommandation {
   animation: fadeInAnimation ease 0.5s;
