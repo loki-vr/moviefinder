@@ -65,5 +65,6 @@ export default defineComponent({
 
 h1 {
   font-size: larger;
+  margin: 20px;
 }
 </style>
