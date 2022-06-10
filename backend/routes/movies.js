@@ -55,13 +55,24 @@ router.get("/search/:search", async function (req, res) {
 });
 
 router.get("/genre/:genre", async function (req, res) {
-  const movies = await MovieModel.find({
-    genres: parseInt(req.params.genre, 10),
-  })
-    .skip(req.query.offset ? parseInt(req.query.offset) : 0)
-    .limit(req.query.limit ? parseInt(req.query.limit) : 24)
-    .populate("genres");
-  res.json(movies);
+  if (req.query.offset === "false") {
+    const movies = await MovieModel.find({
+      genres: parseInt(req.params.genre, 10),
+    })
+      .skip(req.query.offset ? parseInt(req.query.offset) : 0)
+      .limit(req.query.limit ? parseInt(req.query.limit) : 24)
+      .populate("genres");
+    res.json(movies);
+  } else {
+    const movies = await MovieModel.find({
+      genres: parseInt(req.params.genre, 10),
+      user_opinion: 0,
+    })
+      .skip(req.query.offset ? parseInt(req.query.offset) : 0)
+      .limit(req.query.limit ? parseInt(req.query.limit) : 24)
+      .populate("genres");
+    res.json(movies);
+  }
 });
 
 router.get("/liked", async function (req, res) {

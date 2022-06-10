@@ -5,7 +5,9 @@ const GenreModel = require("../models/genre");
 const genre_params = ["_id", "name"];
 
 router.get("/", async function (req, res) {
-  const genres = await GenreModel.find({});
+  const genres = await GenreModel.find({})
+    .populate("likes")
+    .exec({ options: { sort: ["likes", "desc"] } });
   res.json(genres);
 });
 
