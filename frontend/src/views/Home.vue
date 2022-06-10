@@ -93,6 +93,14 @@ body {
 
 .logo {
   background-image: url("../assets/mosaique_sombre.png");
+  background-image: -moz-linear-gradient(
+      bottom,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0) 20%,
+      rgba(0, 0, 0, 0) 80%,
+      rgba(0, 0, 0, 1) 100
+    ),
+    url("../assets/mosaique_sombre.png");
   background-repeat: repeat;
   background-size: 700px;
   background-attachment: fixed;

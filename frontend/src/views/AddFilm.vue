@@ -208,7 +208,7 @@ h1 {
   border-bottom: 1.5px solid #f15ad3;
   transition: 0.2s;
 }
-.add input[type="submit"] {
+.add input[type="button"] {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
