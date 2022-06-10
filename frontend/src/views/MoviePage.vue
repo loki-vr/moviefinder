@@ -9,7 +9,7 @@
       <div class="inside">
         <div class="texte">
           <div style="height: 100px"></div>
-          <h3>{{ movie.title }}</h3>
+          <h1>{{ movie.title }}</h1>
           <ul id="example-1">
             <li>🎬 &nbsp;&nbsp;</li>
             <li v-for="genre in movie.genres" :key="genre._id">
@@ -36,33 +36,25 @@
             @click="increment()"
             class="oui-bouton-up"
             type="button"
-          >
-            I like it 👍
-          </button>
+          ></button>
           <button
             v-if="opinion === 0 || opinion == -1"
             @click="increment()"
             class="oui-bouton-down"
             type="button"
-          >
-            I like it 👍
-          </button>
+          ></button>
           <button
             v-if="opinion === -1"
             @click="decrement()"
             class="non-bouton-up"
             type="button"
-          >
-            I don't like it 👎
-          </button>
+          ></button>
           <button
             v-if="opinion === 0 || opinion == 1"
             @click="decrement()"
             class="non-bouton-down"
             type="button"
-          >
-            I don't like it 👎
-          </button>
+          ></button>
 
           <p style="text-align: left">
             <span>Similar films and series</span>
@@ -249,23 +241,44 @@ h1 {
 }
 
 .oui-bouton-up {
-  background: rgb(66, 114, 30);
-  color: white;
-  border: rgb(66, 114, 30);
+  background-image: url("../assets/likeok.png");
+  background-size: 40px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 50px;
+  width: 50px;
+  padding: 10px;
+  border: none;
   border-radius: 20px;
-  padding: 5px;
-  margin: 2px;
   cursor: pointer;
 }
 
-.oui-bouton-down,
-.non-bouton-down {
-  background: rgb(80, 82, 80);
-  color: white;
-  border: rgb(80, 82, 80);
+.oui-bouton-down {
+  background-image: url("../assets/like.png");
+  background-size: 40px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  height: 50px;
+  width: 50px;
+  padding: 10px;
+  border: none;
   border-radius: 20px;
-  padding: 5px;
-  margin: 2px;
+  cursor: pointer;
+}
+
+.non-bouton-down {
+  background-image: url("../assets/dislike.png");
+  background-size: 40px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  height: 50px;
+  width: 50px;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
   cursor: pointer;
 }
 
@@ -274,18 +287,26 @@ h1 {
 }
 
 .non-bouton-up {
-  background: rgb(125, 51, 51);
-  color: white;
-  border: rgb(125, 51, 51);
+  background-image: url("../assets/dislikeok.png");
+  background-size: 40px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  height: 50px;
+  width: 50px;
+  padding: 10px;
   border-radius: 20px;
-  padding: 5px;
-  margin-left: 5px;
-  margin: 2px;
+  border: none;
   cursor: pointer;
 }
 
-.genreLink {
-  text-decoration: none;
+.oui-bouton-down:hover,
+.non-bouton-down:hover {
+  opacity: 0.7;
+  transition: 0.2s;
+}
+a {
   color: white;
+  text-decoration: none;
 }
 </style>
