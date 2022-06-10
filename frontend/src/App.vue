@@ -49,7 +49,9 @@ export default {
   },
   data() {
     return {
-      search: ``,
+      search: this.$route.fullPath.startsWith("/search")
+        ? this.$route.fullPath.substring(8)
+        : ``,
     };
   },
   created: async function () {

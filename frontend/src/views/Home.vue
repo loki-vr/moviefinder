@@ -4,11 +4,7 @@
       <div class="logo">
         <img id="rotationnage" alt="Vue logo" src="../assets/morbiustv.png" />
       </div>
-      <Carousel
-        v-if="liked.length"
-        :movies="liked"
-        title="Movies you can rewatch"
-      />
+      <Carousel v-if="liked.length" :movies="liked" title="Rewatch" />
       <Carousel
         v-for="cat in categories"
         :key="cat[0]._id"
@@ -43,7 +39,9 @@ export default {
     }
 
     try {
-      genres = (await axios.get(process.env.VUE_APP_API + "/genres")).data;
+      genres = (await axios.get(process.env.VUE_APP_API + "/genres")).data.sort(
+        (a, b) => a.likes < b.likes
+      );
     } catch (error) {
       console.log(error);
     }

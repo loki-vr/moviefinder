@@ -158,7 +158,9 @@ export default {
 
     try {
       this.similar = (
-        await axios.get(process.env.VUE_APP_API + "/movies/liked")
+        await axios.get(
+          process.env.VUE_APP_API + "/movies/genre/" + this.movie.genres[0]._id
+        )
       ).data;
     } catch (error) {
       console.log(error);
